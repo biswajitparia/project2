@@ -22,7 +22,6 @@ public class Scheduler implements DeadlineEngine {
         boolean flag = false;
         try {
             lock.lock();
-
             flag = events.remove(requestId);
         } finally {
             lock.unlock();
