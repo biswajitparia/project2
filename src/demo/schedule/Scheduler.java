@@ -6,7 +6,6 @@ import java.util.concurrent.locks.ReentrantLock;
 import java.util.function.Consumer;
 
 public class Scheduler implements DeadlineEngine {
-    public static final int INITIAL_CAPACITY = 1000;
     private final Queue<Long> events = new PriorityBlockingQueue<>();
     private final ReentrantLock lock = new ReentrantLock();
 
