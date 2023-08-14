@@ -11,7 +11,13 @@ public class Scheduler implements DeadlineEngine {
 
     @Override
     public long schedule(long deadlineMs) {
-        boolean flag = events.offer(deadlineMs);
+        boolean flag = false;
+        try {
+            lock.lock();
+            flag = events.offer(deadlineMs);
+        } finally {
+            lock.unlock();
+        }
         System.out.println("SCHEDULE: " + flag + " requestId: " + deadlineMs);
         return deadlineMs;
     }
